@@ -2,10 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QtPass"
-#define MyAppVersion "0.9.1"
+#define MyAppVersion "1.2.0-pre"
 #define MyAppPublisher "IJhack"
-#define MyAppURL "http://qtpass.org/"
+#define MyAppURL "https://qtpass.org/"
 #define MyAppExeName "qtpass.exe"
+
+#define QtDir GetEnv('QTDIR')
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -21,8 +23,8 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile=C:\Users\IEUser\Desktop\QtPass\LICENSE.txt
-OutputBaseFilename=setup
+LicenseFile=src\release\LICENSE.txt
+OutputBaseFilename=qtpass-{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 ShowLanguageDialog=no
@@ -60,20 +62,20 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\IEUser\Desktop\QtPass\qtpass.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\README.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\icudt53.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\icuin53.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\icuuc53.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\Desktop\QtPass\platforms\qwindows.dll"; DestDir: "{app}\platforms\"; Flags: ignoreversion
+Source: "{#QtDir}\bin\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\Qt5Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\libwinpthread-1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\bin\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#QtDir}\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms\"; Flags: ignoreversion
+Source: "{#QtDir}\plugins\iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines\"; Flags: ignoreversion
+
+Source: "src\release\qtpass.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\release\README.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\release\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
